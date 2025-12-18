@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>My Dark Forest Map</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div id="scoreDisplay" class="score-display" aria-live="polite">
+    <p id="totalComfortability">Total Comfortability: 0</p>
+    <p id="totalExclusion">Total Exclusion: 0</p>
+    <p id="totalCookies">Total Cookies: 0</p>
+  </div>
+
+  <header class="site-header">
+    <div class="header-row">
+      <div>
+        <h1>My Dark Forest of the Internet</h1>
+        <p class="subtitle">
+          A personal map of where my apps and digital spaces live: public plaza, dark forest, bunker… and a hidden onion layer.
+        </p>
+      </div>
+
+      <img src="eco.png" alt="Dark forest ecosystem reference diagram" class="header-image" />
+    </div>
+  </header>
+
+  <!-- Intent modallll -->
+  <dialog id="intentModal" class="intent-modal">
+    <div class="modal-content">
+      <h2>Entering: <span id="targetSiteName">Site</span></h2>
+
+      <div class="metrics-display">
+        <div class="metric">
+          <label for="baseExclusion">Base Exclusion</label>
+          <progress id="baseExclusion" max="10" value="0"></progress>
+        </div>
+        <div class="metric">
+          <label>Tracking Cookies</label>
+          <span id="baseCookies">0</span>
+        </div>
+      </div>
+
+      <p class="question">Why are you entering this space?</p>
+      <textarea id="userPurpose" placeholder="e.g. 'To feel safe', 'To argue', 'To kill time'"></textarea>
+
+      <div class="modal-actions">
+        <button id="cancelBtn" class="btn secondary" type="button">Nevermind</button>
+        <button id="analyzeBtn" class="btn primary" type="button">Analyze & Enter</button>
+      </div>
+
+      <div id="aiAnalysisResult" class="hidden">
+        <p><strong>Verdict:</strong> <span id="aiScoreText">Analyzing...</span></p>
+        <button id="proceedBtn" class="btn ghost" type="button">Proceed Anyway</button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Add app modal -->
+  <dialog id="addAppModal" class="intent-modal">
+    <form id="addAppForm" class="modal-content">
+      <h2>Add a Space</h2>
+      <p class="fineprint">Saved to your browser only (localStorage). So yes, this is fake permanence.</p>
+
+      <label class="field">
+        <span>Name</span>
+        <input id="newAppName" required placeholder="e.g. Reddit, iMessage, Spotify" />
+      </label>
+
+      <label class="field">
+        <span>Zone</span>
+        <select id="newAppZone" required>
+          <option value="plaza">Public Plaza</option>
+          <option value="forest">Dark Forest</option>
+          <option value="bunker">Bunker / Offline</option>
+        </select>
+      </label>
+
+      <label class="field">
+        <span>URL</span>
+        <input id="newAppUrl" placeholder="https://..." />
+      </label>
+
+      <div class="field-grid">
+        <label class="field">
+          <span>Comfortability (1-10)</span>
+          <input id="newAppComfort" type="number" min="1" max="10" value="5" required />
+        </label>
+
+        <label class="field">
+          <span>Exclusion (0-10)</span>
+          <input id="newAppExclusion" type="number" min="0" max="10" value="3" required />
+        </label>
+
+        <label class="field">
+          <span>Cookies</span>
+          <input id="newAppCookies" type="number" min="0" max="250" value="10" required />
+        </label>
+      </div>
+
+      <label class="field">
+        <span>Notes</span>
+        <textarea id="newAppNotes" placeholder="What does this space feel like? Who benefits? Who gets locked out?"></textarea>
+      </label>
+
+      <div class="modal-actions">
+        <button id="addAppCancel" class="btn secondary" type="button">Cancel</button>
+        <button class="btn primary" type="submit">Add</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Political layer is now inside the onion layer (not next to the onion button) -->
+  <dialog id="politicalModal" class="political-modal">
+    <div class="modal-content">
+      <div class="layer-header">
+        <h2>The Political Layer: Asymmetry in the Dark</h2>
+        <p class="layer-subtitle">When “privacy” protects both dissidents and power-brokers.</p>
+      </div>
+
+      <div class="political-grid">
+        <article class="political-card">
+          <h3>TESCREAL Bunker</h3>
+          <p><strong>Claim:</strong> Ideological projects around AGI often consolidate in semi-private networks.</p>
+          <p class="critique"><strong>Why it matters:</strong> opting out of the Public Plaza can reduce contestation, while elites keep building futures 'behind the scenes'.</p>
+        </article>
+
+        <article class="political-card">
+          <h3>“War Room” Chats</h3>
+          <p><strong>Claim:</strong> encrypted group chats can become real governance infrastructure.</p>
+          <p class="critique"><strong>Why this matters:</strong> for the marginalized, privacy is a shield. But for the powerful \(political leaders\), it can be a veil.</p>
+        </article>
+
+        <article class="political-card warning">
+          <h3>The Trade-Off</h3>
+          <p>
+            Counterpublics can feel more comfortable and unite in the dark forest, but lose the ability to contest dominant narratives out in the open.
+            On the other hand, powerful leaders (i.e. of nations or insitutions) can use these same dark channels to coordinate without scrutiny.
+          </p>
+        </article>
+      </div>
+
+      <button id="closePoliticalModal" class="btn secondary" type="button">Close</button>
+    </div>
+  </dialog>
+
+  <!-- Sources modal... It's alot but idk feels important -->
+  <dialog id="sourcesModal" class="intent-modal">
+    <div class="modal-content">
+      <h2>Sources (starter bibliography)</h2>
+      <p class="fineprint">These are mostly syllabus texts — swap/add as you refine the written component.</p>
+
+      <ul class="sources-list">
+        <li><strong>Winner</strong> — “Do Artifacts Have Politics?”</li>
+        <li><strong>Gillespie</strong> — “The Relevance of Algorithms”</li>
+        <li><strong> Akinar and Fazelour</strong> - “Authenticity and exclusion: social media algorithms and the dynamics of belonging” </li>
+        <li><strong>Foucault</strong> — “Panopticism”</li>
+        <li><strong>Shoshana Zuboff’</strong> — “Big Other: Surveillance Capitalism”</li> 
+        <li><strong>Deleuze</strong> — “Postscript on the Societies of Control”</li>
+        <li><strong>Gebru &amp; Torres</strong> — “The TESCREAL Bundle”</li>
+        <li><strong>Ben Smith</strong> - <a href="onion.html" target="_blank">The group chats that changed America</a> </li>
+        <li><strong>José van Dijck and Thomas Poell</strong> - Social media platforms and education</li>
+      </ul>
+
+      <button id="closeSourcesModal" class="btn secondary" type="button">Close</button>
+    </div>
+  </dialog>
+
+  <main>
+    <div class="view-toggle">
+      <button id="listViewBtn" class="toggle-button active">List view</button>
+      <button id="mapViewBtn" class="toggle-button">Map view</button>
+    </div>
+
+    <div class="top-actions">
+      <button id="addAppBtn" class="chip-btn" type="button">+ Add an app</button>
+      <button id="sourcesBtn" class="chip-btn" type="button">Sources</button>
+    </div>
+
+    <section id="listView" class="view active-view">
+      <div id="listContainer" class="zone-list"></div>
+    </section>
+
+    <section id="mapView" class="view">
+      <div class="map-controls">
+        <button id="onionBandToggleBtn" class="onion-page-button" type="button">Reveal Onion Band</button>
+        <button id="onionPageButton" class="onion-page-button" type="button">Onion Layer (full page)</button>
+      </div>
+
+      <div class="map-container">
+        <div class="zone-column" data-zone="plaza">
+          <h2>Public Plaza</h2>
+          <p class="zone-desc">Highly visible, surveilled, algorithmic feeds.</p>
+          <div class="zone-apps" id="plazaColumn"></div>
+        </div>
+
+        <div class="zone-column" data-zone="forest">
+          <h2>Dark Forest</h2>
+          <p class="zone-desc">Semi-hidden, cozy webs, group chats, enclaves.</p>
+          <div class="zone-apps" id="forestColumn"></div>
+        </div>
+
+        <div class="zone-column" data-zone="bunker">
+          <h2>Bunker</h2>
+          <p class="zone-desc">Encrypted, offline, or “touch grass” refuge.</p>
+          <div class="zone-apps" id="bunkerColumn"></div>
+        </div>
+      </div>
+
+      <div id="onionBand" class="onion-band hidden">
+        <div class="onion-header">
+          <div class="onion-header-row">
+            <div>
+              <h2> ONION BAND (Dark Net)</h2>
+              <p class="onion-desc">Different infrastructure with different risks... maybe some different politics... who knows?</p>
+            </div>
+            <button id="onionPoliticalBtn" class="chip-btn danger" type="button">Political Layer</button>
+          </div>
+        </div>
+
+        <div class="onion-apps" id="onionColumn"></div>
+
+        <div class="onion-note">
+          <p>
+            Onion routing, conceptually: <strong>You → Entry → Relay → Exit → Destination</strong>.
+            There is a sort of symmetric point I want to make here, where you get privacy but so do people you don’t want to be private.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Built for SOC266: Social Life of Data</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Onion Layer Map</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <header class="site-header">
+    <h1>Onion Layer / Dark Net</h1>
+    <p class="subtitle">
+      A conceptual map of the onion layer — no addresses, no instructions, just politics and low stake community engagement.
+    </p>
+  </header>
+
+  <main>
+    <div class="view-toggle">
+      <a href="index.html" class="toggle-button">← Back to Dark Forest</a>
+      <button id="onionPoliticalBtn" class="toggle-button active" type="button">Political Layer</button>
+      <button id="sourcesBtn" class="toggle-button" type="button">Sources</button>
+    </div>
+
+    <section id="onionView" class="view active-view">
+      <div id="onionRoot" class="zone-list"></div>
+    </section>
+
+    <section id="onionPoliticalSection" class="political-layer hidden">
+      <div class="layer-header">
+        <h2>The Political Layer (inside the onion layer)</h2>
+        <p class="layer-subtitle">
+          The dark forest isn’t “outside politics.” It’s where politics gets concentrated.
+        </p>
+      </div>
+
+      <div class="political-grid">
+        <article class="political-card">
+          <h3>Privacy as Shield</h3>
+          <p>For marginalized people, encryption and gated spaces can be survival infrastructure.</p>
+          <p class="critique">But the same affordances can be used by harassers, scammers, and states.</p>
+        </article>
+
+        <article class="political-card">
+          <h3>Privacy as Veil</h3>
+          <p>Elites can coordinate through “cozy” channels with asymmetric power and low accountability.</p>
+          <p class="critique">The quietest rooms can be the ones that move the loudest policy.</p>
+        </article>
+
+        <article class="political-card warning">
+          <h3>The Asymmetry</h3>
+          <p>
+            When counterpublics move into hidden spaces, they gain cohesion but lose contestation and broad visibility.
+            Hegemonic actors keep the visibility <em>and</em> the private channels.
+          </p>
+        </article>
+      </div>
+
+      <button id="closeOnionPolitical" class="btn secondary" type="button">Close</button>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Conceptual onion layer for SOC266: Social Life of Data.</p>
+  </footer>
+
+  <dialog id="sourcesModal" class="intent-modal">
+    <div class="modal-content">
+      <h2>Sources (starter bibliography)</h2>
+      <ul class="sources-list">
+        <li><strong>Winner</strong> — “Do Artifacts Have Politics?”</li>
+        <li><strong>Gillespie</strong> — “The Relevance of Algorithms”</li>
+        <li><strong>Foucault</strong> — “Panopticism”</li>
+        <li><strong>Deleuze</strong> — “Postscript on the Societies of Control”</li>
+        <li><strong>Simone Browne</strong> — <em>Dark Matters</em> selections</li>
+        <li><strong>Gebru &amp; Torres</strong> — “The TESCREAL Bundle”</li>
+      </ul>
+      <button id="closeSourcesModal" class="btn secondary" type="button">Close</button>
+    </div>
+  </dialog>
+
+  <script src="onion.js"></script>
+</body>
+</html>
